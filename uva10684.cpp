@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-    int n, secuencia, contador = 0, streak = 0;
+    int n = 1, secuencia, contador = 0, streak = 0;
     vector<int> racha;
     vector<int> respuesta;
-    cin >> n;
     while (n != 0)
     {
+        cin >> n;
         for (int i = 0; i < n; i++)
         {
             cin >> secuencia;
@@ -19,11 +19,11 @@ int main()
 
         for (int i = 0; i < racha.size(); i++)
         {
-            if (racha[i] > 0){
+            if (racha[i] > 0)
+            {
                 contador += racha[i];
-                cout<<"soy contador: "<<contador<<endl;
+               // cout << "soy contador: " << contador << endl;
             }
-                
 
             if (racha[i] < 0)
             {
@@ -31,11 +31,24 @@ int main()
                 contador = 0;
             }
 
-            if(i<racha.size()) respuesta.push_back(contador);
+            if (i < racha.size())
+            {
+                respuesta.push_back(contador);
+            }
         }
-        streak = *max_element(respuesta.begin(), respuesta.end());
-        cout <<"La mayor racha que puede tener es de: "<< streak << endl;
+        contador=0;
 
+        streak = *max_element(respuesta.begin(), respuesta.end());
+        respuesta.clear();
+        racha.clear();
+        if (streak <= 0 && n>0)
+        {
+            cout << "Losing streak." << endl;
+        }
+        else if(streak > 0 && n>0)
+        {
+            cout << "The maximum winning streak is " << streak << endl;
+        }
     }
 
     return 0;
